@@ -3,9 +3,249 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Project One</title>
+    <title>TommyGroshong Blog</title>
+
+    <style>
+     /**
+      * Below is an example of creating "CSS Variables". I want to use the same border color
+      * in several different kinds of elements, so I set the variable "--default-border-color" which
+      * which I can then reference whenever I want.
+      *
+      * See the `#header-divider` and `article` rules.
+      */
+     :root {
+       --default-border-color: #DEDEDE;
+     }
+
+     body {
+       color: #444444;
+       font-family: sans-serif;
+     }
+
+     a {
+       text-decoration: none;
+       color: #2060d0;
+     }
+
+     /**
+      * Adding the ":hover" is a pseudo-selector which means "apply these rules if the user hovers this element"
+      */
+     a:hover {
+       text-decoration: underline;
+       color: #6290e1;
+     }
+
+     header,
+     main,
+     footer {
+       max-width: 1080px;
+       margin: 1em auto;
+     }
+
+     header {
+       /* Flexbox is awesome! https://css-tricks.com/snippets/css/a-guide-to-flexbox/ */
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+     }
+
+     #header-divider {
+       /* First, turn off all the borders */
+       border: none;
+       /* Then, turn back on ONLY the top border */
+       border-top: 1px solid var(--default-border-color);
+       /* This is one of the ways that CSS "cascades"; later rules override earlier rules. */
+     }
+
+     /**
+      * SVGs can be styled with CSS like any other element.
+      */
+     svg.category-icon {
+       width: 1em;
+       height: 1em;
+       vertical-align: -0.125em;
+     }
+
+     header h1 {
+       margin: 0;
+     }
+
+     ul.navlinks {
+       margin: 0;
+     }
+
+     ul.navlinks li {
+       font-size: 18pt;
+       display: inline-block;
+       padding-left: 0.5em;
+     }
+
+     ul.navlinks li a {
+       color: #444444;
+     }
+
+
+     .article-subheader {
+       display: flex;
+       align-content: baseline;
+     }
+
+     .article-subheader ul.category-list {
+       margin: 0;
+       display: flex;
+       justify-content: flex-start;
+       align-content: baseline;
+     }
+
+     .article-subheader ul.category-list li {
+       margin-right: 1em;
+       list-style: none;
+     }
+
+     #article-pagination {
+       margin-top: 1em;
+       /* This works because all the contents of the pagination div are inline text/anchor elements. */
+       text-align: center;
+     }
+
+     footer {
+       display: flex;
+       justify-content: space-between;
+     }
+
+     article {
+       padding-bottom: 1em;
+       border-bottom: 1px solid var(--default-border-color);
+     }
+    </style>
   </head>
+
   <body>
+    <header>
+      <h1>TommyGroshong.com</h1>
+      <nav>
+        <ul class="navlinks">
+          <li>
+            <a href="#">About</a>
+          </li>
+          <li>
+            <a href="#">Categories</a>
+          </li>
+          <li>
+            <a href="#">Tags</a>
+          </li>
+          <li>
+            <a href="#">Archives</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr id="header-divider" />
+
+    <main>
+      <article>
+        <h2> Leading Effective React Teams</h2>
+
+        <div class="article-subheader">
+          <div>July 26, 2022</div>
+          <ul class="category-list">
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="folder" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"></path>
+              </svg>
+              JavaScript
+            </li>
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="folder" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"></path>
+              </svg>
+              Web
+            </li>
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="folder" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"></path>
+              </svg>
+              Development
+            </li>
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"></path>
+              </svg>
+              Management
+            </li>
+          </ul>
+        </div>
+
+        <p> Introduction What does it mean for a React team to be effecitve? Productive? Happy? Impactful?
+          since moving back into management after a several year hiatus, this has been on my mind a lot.
+          I've begun to collect my thoughts into this post many of the ideas apply to projects of any kind,
+          but some of the advice i'll give will be tailored specigically to React projects and teams.
+          Many of the ideas here build off of this earlier article "Good Software from the Software Engineer's
+          Perspective"
+          Where I analyze the things that make an Application "good".
+        </p>
+        <a href="#">Read more...</a>
+      </article>
+
+
+      <article>
+        <h2> Leading Effective React Teams </h2>
+        <div class="article-subheader">
+          <div>July 26, 2022</div>
+          <ul class="category-list">
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="folder" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"></path>
+              </svg>
+              JavaScript
+            </li>
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="folder" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"></path>
+              </svg>
+              Web
+            </li>
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="folder" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M464 128H272l-64-64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V176c0-26.51-21.49-48-48-48z"></path>
+              </svg>
+              Development
+            </li>
+            <li>
+              <svg class="category-icon" aria-hidden="true" data-prefix="fas" data-icon="tag" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
+                <path fill="currentColor" d="M0 252.118V48C0 21.49 21.49 0 48 0h204.118a48 48 0 0 1 33.941 14.059l211.882 211.882c18.745 18.745 18.745 49.137 0 67.882L293.823 497.941c-18.745 18.745-49.137 18.745-67.882 0L14.059 286.059A48 48 0 0 1 0 252.118zM112 64c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48z"></path>
+              </svg>
+              Management
+            </li>
+          </ul>
+        </div>
+
+        <p> What does it mean for a software application to be good? Here's my ranked ordered list of
+          "good software" attributes: Solutiona: Provides a service or solves a problem, and does it
+          well design: Cohesive, Intuitive interface Quality: Minimal bugs and defects; good proformance
+          Delivery: Conginual, helpful updates Solution and Design are the most visible and obvious parts of
+          "good software", and at the end of the day, if they're good enough, they can make up for all the
+          following things to a shocking degree</p>
+        <a href="#">Read more...</a>
+      </article>
+
+      <div id="article-pagination">
+        <a href="#">&lt;&lt;</a>
+        <a href="#">&lt;</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">&gt;</a>
+        <a href="#">&gt;&gt;</a>
+      </div>
+
+    </main>
+
+    <footer>
+      <p> &copy; copyright 2019 Thomas Groshong Jr <a href="#">About</a></p>
+      <P>Powered by <a href="#">Hugo</a> and <a href="#">Whiteplain</a></P>
+    </footer>
 
   </body>
+
 </html>
