@@ -1,1 +1,3 @@
-# sample-html
+# Training Projects
+
+See the project directories.
