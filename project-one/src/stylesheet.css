@@ -1,0 +1,36 @@
+header {
+    display:flex;
+    justify-content: space-between;
+    font-size: 30pt;
+}
+
+ul {
+    display:flex;
+
+}
+
+li{
+    margin-right:15px;
+    list-style-type: none;
+    font-size: 15pt;
+}
+
+h1{
+    font-size:28pt;
+}
+
+body{
+    width:95%;
+    margin:auto;
+}
+
+svg {
+   width:20px;
+   height:20px;
+   margin-right:4px;
+}
+
+#Pg1 {
+    display:flex;
+    justify-content: flex-start;
+}
