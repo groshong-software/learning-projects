@@ -6,10 +6,7 @@ Project 2: Database Driven Sites
 Execute each of the following commands in the terminal.
 
 ```
-cp .env.example .env
-sed -i "s/REPLACE_ME/$(whoami)/g" .env
-npm install
-npm run db:seed
+npm run quickstart
 ```
 
 ## Documentation
