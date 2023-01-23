@@ -108,64 +108,62 @@ resulting rows to the browser as JSON data (i.e. JavaScript-Object-Notation with
 
 NOTE: You can copy the contents from `app.get('/', ...)` endpoint as the starting point.
 
-### Task 5: Add new GET endpoint /cars-with-owners
+### Task 5: Add new GET endpoint /cars
 
-Open the `src/server.js` file and add code to support a `/cars-with-owners`
+Open the `src/server.js` file and add code to support a `/cars`
 endpoint after `//TODO-Task-5.1`.
 
-Next, copy the contents of `app.get('/', ...)` as a starting point.
+Next, copy the code contents of `app.get('/owners', ...)` as a starting point.
 
-Next, update the SQL query in `/cars-with-owners` endpoint to perform a `LEFT
-JOIN` between `cars` and `owners` and return the resulting rows as JSON.
+Next, update the SQL query in the `/cars` endpoint to perform a `LEFT JOIN` between
+`cars` and `owners` and return the resulting rows as JSON.
 
-Run the server, hit your new `/cars-with-owners` endpoint and confirm it is
+Run the server, hit your new `/cars` endpoint and confirm it is
 correct. Post a screenshot of the browser in Slack.
 
-### Task 6: Add example HTML cars page
+### Task 6: Refactor to an HTML homepage
 
-Open the `src/server.js` file and add the following code to support a
-`/cars-html` endpoint after `//TODO-Task-6.1`.
+Open the `src/server.js` file and replace the `res.json(result.rows)` code after
+`//TODO-Task-6.1` with the following code to support an HTML endpoint:
 
 ```js
-app.get("/cars-html", async (req, res) => {
-  const result = await db.query("select * from cars;");
-
-  // NOTE: By default, calling `res.send(...)` with a string tells the server "send this string to browser as HTML"
-  // See docs here: https://expressjs.com/en/4x/api.html#res.send
-  res.send(`
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Cars | Project 2</title>
-      </head>
-      <body>
-        <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
-          <h1>Cars</h1>
-          <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model}</li>`)).join('')}</ol>
-          <h3>Add a new Car</h3>
-          <form method="POST" action="/car">
-            <label>
-              Year
-              <input type="number" name="year" />
-            </label>
-            <label>
-              Make
-              <input type="text" name="make" />
-            </label>
-            <label>
-              Model
-              <input type="text" name="model" />
-            </label>
-            <button>Submit</button>
-          </form>
-        </main>
-      </body>
-    </html>
-  `);
-});
+// NOTE: By default, calling `res.send(...)` with a string tells the server "send this string to browser as HTML"
+// See docs here: https://expressjs.com/en/4x/api.html#res.send
+res.send(`
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Cars | Project 2</title>
+    </head>
+    <body>
+      <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
+        <h1>Cars</h1>
+        <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model}</li>`)).join('')}</ol>
+        <h3>Add a new Car</h3>
+        <form method="POST" action="/car">
+          <label>
+            Year
+            <input type="number" name="year" />
+          </label>
+          <label>
+            Make
+            <input type="text" name="make" />
+          </label>
+          <label>
+            Model
+            <input type="text" name="model" />
+          </label>
+          <button>Submit</button>
+        </form>
+      </main>
+    </body>
+  </html>
+`);
 ```
+
+Check the homepage https://localhost:3000/ in the browser.
 
 Now, go read up on HTML forms as a quick refresher:
 
