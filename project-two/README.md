@@ -20,9 +20,14 @@ npm run db:reset
 
 ## Documentation
 
-- For the PostgreSQL database client for Node.js: https://node-postgres.com/
-- For Express.js web framework for Node.js: https://expressjs.com/
-- For PostgreSQL itself: https://www.postgresql.org/docs/14/index.html
+- For PostgreSQL v14 database:
+    - PostgreSQL database client for Node.js: https://node-postgres.com/
+    - v14 PostgreSQL API and Guides: https://www.postgresql.org/docs/14/index.html
+
+- For Express.js v4 web framework for Node.js:
+    - Basic Routing: https://expressjs.com/en/starter/basic-routing.html
+    - In-depth Routing: https://expressjs.com/en/guide/routing.html
+    - v4 API Reference: https://expressjs.com/en/4x/api.html
 
 ## Tasks
 
