@@ -172,7 +172,9 @@ Now, go read up on HTML forms as a quick refresher:
 
 ### Task 7: Add new POST endpoint to create cars
 
-You will remember that a standard `GET` HTTP request looks something like this:
+#### Intro
+
+You will remember that a standard `GET` HTTP request looks something like these examples:
 
 ```
 HTTP GET http://www.appdomain.com/users
@@ -214,8 +216,10 @@ using _distinct HTTP methods_.
   - Update: `PUT` and/or `PATCH`
   - Delete: `DELETE`
 
-For this task, we will start by supporting a **Create** action using an `HTTP
-POST` method. You can read more about HTTP methods and Status Codes here:
+#### Task
+
+For this task, we will start by supporting a **Create** action for cars using an
+`HTTP POST` method. You can read more about HTTP methods and Status Codes here:
 
   - https://restfulapi.net/http-methods/
   - https://www.restapitutorial.com/httpstatuscodes.html
@@ -245,9 +249,11 @@ app.post('/car', async (req, res) => {
   // JavaScript or mobile app), we could have instead returned an HTTP 201 status
   // code indicating "Successfully Created" and some JSON message like so:
   //
+  //
   // res.status(201).json({message: "Success!"});
-
-  // NOTE: Learn more about status codes here: https://www.restapitutorial.com/httpstatuscodes.html
+  //
+  //
+  // Learn more about status codes here: https://www.restapitutorial.com/httpstatuscodes.html
 })
 ```
 
@@ -258,4 +264,5 @@ Refer to the `./src/db.js` file for examples on writing `INSERT` queries.
 
 ### Task 8: Demo to manager
 
-Run the server and demonstrate the HTML page displaying cars and inserting new cars with the form submission.
+Run the server and demonstrate the HTML page displaying cars and inserting new
+cars with the form submission.
