@@ -113,6 +113,8 @@ NOTE: You can copy the contents from `app.get('/', ...)` endpoint as the startin
 Open the `src/server.js` file and add code to support a `/cars-with-owners`
 endpoint after `//TODO-Task-5.1`.
 
+Next, copy the contents of `app.get('/', ...)` as a starting point.
+
 Next, update the SQL query in `/cars-with-owners` endpoint to perform a `LEFT
 JOIN` between `cars` and `owners` and return the resulting rows as JSON.
 
