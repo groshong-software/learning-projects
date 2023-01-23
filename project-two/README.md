@@ -123,7 +123,7 @@ Open the `src/server.js` file and add the following code to support a
 app.get("/cars-html", async (req, res) => {
   const result = await db.query("select * from cars;");
 
-  // NOTE: By default, `res.send(...)` interprets strings as meaning you are sending HTML
+  // NOTE: By default, calling `res.send(...)` with a string tells the server "send this string to browser as HTML"
   // See docs here: https://expressjs.com/en/4x/api.html#res.send
   res.send(`
     <!DOCTYPE html>
@@ -160,7 +160,10 @@ app.get("/cars-html", async (req, res) => {
 });
 ```
 
-In express.js
+Now, go read up on HTML forms as a quick refresher:
+
+- https://developer.mozilla.org/en-US/docs/Learn/Forms/Your_first_form
+- https://developer.mozilla.org/en-US/docs/Learn/Forms/Sending_and_retrieving_form_data
 
 ### Task 7: Add new POST endpoint to create cars
 
@@ -247,3 +250,7 @@ Then, create a database `INSERT` query to save the car form data into the
 database after `//TODO-Task-7.2`.
 
 Refer to the `./src/db.js` file for examples on writing `INSERT` queries.
+
+### Task 8: Demo to manager
+
+Run the server and demonstrate the HTML page displaying cars and inserting new cars with the form submission.
