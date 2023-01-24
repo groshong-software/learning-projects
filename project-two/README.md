@@ -1,5 +1,4 @@
-Project 2: Database Driven Sites
-=======================================
+# Project 2: Database Driven Sites
 
 ## Quick Start
 
@@ -21,13 +20,14 @@ npm run db:reset
 ## Documentation
 
 - For PostgreSQL v14 database:
-    - PostgreSQL database client for Node.js: https://node-postgres.com/
-    - v14 PostgreSQL API and Guides: https://www.postgresql.org/docs/14/index.html
+
+  - PostgreSQL database client for Node.js: https://node-postgres.com/
+  - v14 PostgreSQL API and Guides: https://www.postgresql.org/docs/14/index.html
 
 - For Express.js v4 web framework for Node.js:
-    - Basic Routing: https://expressjs.com/en/starter/basic-routing.html
-    - In-depth Routing: https://expressjs.com/en/guide/routing.html
-    - v4 API Reference: https://expressjs.com/en/4x/api.html
+  - Basic Routing: https://expressjs.com/en/starter/basic-routing.html
+  - In-depth Routing: https://expressjs.com/en/guide/routing.html
+  - v4 API Reference: https://expressjs.com/en/4x/api.html
 
 ## Tasks
 
@@ -46,7 +46,7 @@ Then, update the cars insertion code at `//TODO-Task-1.2`:
 
 ```js
 "INSERT INTO cars(year, make, model, vin) VALUES($1, $2, $3, $4)",
-[car.year, car.make, car.model, car.vin]
+  [car.year, car.make, car.model, car.vin];
 ```
 
 Run the reset script (`npm run db:reset`) and verify the output in DBeaver.
@@ -87,7 +87,7 @@ Then, update the cars insertion code at `// TODO-Task-3.2`:
 
 ```js
 "INSERT INTO cars(year, make, model, vin, owner_id) VALUES($1, $2, $3, $4, $5)",
-[car.year, car.make, car.model, car.vin, car.ownerId]
+  [car.year, car.make, car.model, car.vin, car.ownerId];
 ```
 
 ### Task 4: Add new GET endpoint /owners
@@ -95,9 +95,9 @@ Then, update the cars insertion code at `// TODO-Task-3.2`:
 Open the `src/server.js` file and add the following code after `// TODO-Task-4.1`:
 
 ```js
-app.get('/owners', async (req, res) => {
+app.get("/owners", async (req, res) => {
   // TODO-Task-4.2: Lookup owners from database and return as JSON response
-})
+});
 ```
 
 This allows your Node.js server to handle HTTP requests `GET /owners`.
@@ -140,7 +140,11 @@ res.send(`
     <body>
       <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
         <h1>Cars</h1>
-        <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model}</li>`)).join('')}</ol>
+        <ol>
+          ${result.rows
+            .map((r) => `<li>${r.year} ${r.make} ${r.model}</li>`)
+            .join("")}
+        </ol>
         <h3>Add a new Car</h3>
         <form method="POST" action="/car">
           <label>
@@ -203,26 +207,26 @@ because the method/verb used are different.
 All basic web applications that manage data must fulfill at least the basic "CRUD"
 functionality:
 
-  - (C)reate
-  - (R)ead
-  - (U)pdate
-  - (D)elete
+- (C)reate
+- (R)ead
+- (U)pdate
+- (D)elete
 
 In well-designed web server applications, the different operations are performed
 using _distinct HTTP methods_.
 
-  - Create: `POST`
-  - Read: `GET`
-  - Update: `PUT` and/or `PATCH`
-  - Delete: `DELETE`
+- Create: `POST`
+- Read: `GET`
+- Update: `PUT` and/or `PATCH`
+- Delete: `DELETE`
 
 #### Task
 
 For this task, we will start by supporting a **Create** action for cars using an
 `HTTP POST` method. You can read more about HTTP methods and Status Codes here:
 
-  - https://restfulapi.net/http-methods/
-  - https://www.restapitutorial.com/httpstatuscodes.html
+- https://restfulapi.net/http-methods/
+- https://www.restapitutorial.com/httpstatuscodes.html
 
 Open the `src/server.js` file and add the following code to support a
 `POST /car` endpoint after `//TODO-Task-7.1`.
@@ -230,20 +234,20 @@ Open the `src/server.js` file and add the following code to support a
 ```js
 // NOTE: `app.post(...)` means "I only want to handle HTTP POST requests here"
 // while `app.get(...)` means "I only want to handle HTTP GET requests here"
-app.post('/car', async (req, res) => {
+app.post("/car", async (req, res) => {
   // Read the HTTP request body which should contain the form data submitted by
   // the browser.
   // NOTE: See docs here: https://expressjs.com/en/4x/api.html#req.body
-  const formData = req.body
+  const formData = req.body;
 
-  console.log('Form Data:', formData) // this is for our own debugging...
+  console.log("Form Data:", formData); // this is for our own debugging...
 
   // TODO-Task-7.2: Write an INSERT statement to save the data into the database
 
   // Redirect the browser back to the `/cars-html` page, which is what you want to do
   // when responding to a browser HTML form submission.
   // NOTE: See docs here: https://expressjs.com/en/4x/api.html#res.redirect
-  res.redirect('/cars-html')
+  res.redirect("/");
 
   // NOTE: If we were handling a programmatic API submission (like from a
   // JavaScript or mobile app), we could have instead returned an HTTP 201 status
@@ -254,7 +258,7 @@ app.post('/car', async (req, res) => {
   //
   //
   // Learn more about status codes here: https://www.restapitutorial.com/httpstatuscodes.html
-})
+});
 ```
 
 Then, create a database `INSERT` query to save the car form data into the
