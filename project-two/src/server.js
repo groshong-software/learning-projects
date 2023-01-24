@@ -63,7 +63,7 @@ app.post('/car', async (req, res) => {
   console.log('Form Data:', formData) // this is for our own debugging...
 
   // TODO-Task-7.2: Write an INSERT statement to save the data into the database
-  await db.query("INSERT INTO cars()")
+  await db.query("INSERT INTO cars(year, make, model) VALUES($1, $2, $3)", [car.year, car.make, car.model])
   // Redirect the browser back to the `/cars-html` page, which is what you want to do
   // when responding to a browser HTML form submission.
   // NOTE: See docs here: https://expressjs.com/en/4x/api.html#res.redirect
