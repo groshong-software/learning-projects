@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }))
 
 app.get("/", async (req, res) => {
   const result = await db.query("select * from cars left join owners on cars.owner_id = owners.id;");
-
+  const ownerResult = await db.query("select * from owners");
   // TODO-Task-6.1: Replace with example HTML cars page
   // NOTE: By default, calling `res.send(...)` with a string tells the server "send this string to browser as HTML"
   // See docs here: https://expressjs.com/en/4x/api.html#res.send
@@ -24,8 +24,11 @@ app.get("/", async (req, res) => {
   <body>
     <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
       <h1>Cars</h1>
-      <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model} ${r.vin} ${r.name}</li>`)).join('')}</ol>
-      <h3>Add a new Car</h3>
+      <ol>
+      ${result.rows
+      .map((r) => `<li>${r.year} ${r.make} ${r.model} ${r.vin} ${r.name}</li>`)
+      .join("")}
+      </ol>      <h3>Add a new Car</h3>
       <form method="POST" action="/car">
         <label>
           Year
@@ -46,11 +49,8 @@ app.get("/", async (req, res) => {
         <label>
           Owner ID
           <select name="owner_id">
-          <option value="1">Bob</option>
-          <option value="2">Jeff</option>
-          <option value="3">Dylan</option>
-          <option value="4">Alex</option>
-          <option value="5">Clark</option>
+          ${ownerResult.rows
+      .map((r) => `<option value="${r.id}">${r.name}</option>`)}
           </select>
         </label>
         <button>Submit</button>
