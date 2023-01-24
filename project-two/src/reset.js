@@ -34,6 +34,10 @@ await db.query(`
     name varchar(100) NOT NULL
   );
 `);
+await db.query(`
+  ALTER TABLE owners
+  ADD COLUMN last_name varchar(17) DEFAULT NULL;
+`);
 
 // TODO-Task-3.1: Add ownerId foreign key to cars table
 await db.query(`
@@ -41,11 +45,11 @@ await db.query(`
   ADD CONSTRAINT fk_cars_owners FOREIGN KEY (owner_id) REFERENCES owners (id);
 `);
 const owners = [
-  { id: 1, name: "Bob" },
-  { id: 2, name: "Jim" },
-  { id: 3, name: "Dylan" },
-  { id: 4, name: "Alex" },
-  { id: 5, name: "Clark" },
+  { id: 1, name: "Bob", lastName: "Williams" },
+  { id: 2, name: "Jim", lastName: "Johnson" },
+  { id: 3, name: "Dylan", lastName: "Perkins" },
+  { id: 4, name: "Alex", lastName: "Awwiller" },
+  { id: 5, name: "Clark", lastName: "Flowers" },
 ];
 
 const cars = [
@@ -76,8 +80,8 @@ const cars = [
 for (const owner of owners) {
   // What goes here? Look at the other for-loop as an example
   await db.query(
-    "INSERT INTO owners(id, name) VALUES($1, $2)",
-    [owner.id, owner.name]
+    "INSERT INTO owners(id, name, last_name) VALUES($1, $2, $3)",
+    [owner.id, owner.name, owner.lastName]
   )
 }
 // Insert cars into cars table

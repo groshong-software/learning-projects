@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
       <h1>Cars</h1>
       <ol>
       ${result.rows
-      .map((r) => `<li>${r.year} ${r.make} ${r.model} ${r.vin} ${r.name}</li>`)
+      .map((r) => `<li>${r.year} ${r.make} ${r.model} ${r.vin} ${r.name} ${r.last_name}</li>`)
       .join("")}
       </ol>      <h3>Add a new Car</h3>
       <form method="POST" action="/car">
