@@ -40,6 +40,7 @@ await db.query(`
 const owners = [
   { id: 1, name: "Bob" },
   { id: 2, name: "Jim" },
+  { id: 3, name: "Jib" },
 ];
 
 const cars = [
