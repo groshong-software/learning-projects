@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }))
 
 app.get("/", async (req, res) => {
-  const result = await db.query("select * from cars;");
+  const result = await db.query("select * from cars left join owners on cars.owner_id = owners.id;");
 
   // TODO-Task-6.1: Replace with example HTML cars page
   // NOTE: By default, calling `res.send(...)` with a string tells the server "send this string to browser as HTML"
@@ -24,7 +24,7 @@ app.get("/", async (req, res) => {
   <body>
     <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
       <h1>Cars</h1>
-      <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model}</li>`)).join('')}</ol>
+      <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model} ${r.vin} ${r.name}</li>`)).join('')}</ol>
       <h3>Add a new Car</h3>
       <form method="POST" action="/car">
         <label>
@@ -38,6 +38,20 @@ app.get("/", async (req, res) => {
         <label>
           Model
           <input type="text" name="model" />
+        </label>
+        <label>
+          VIN
+          <input type="text" name="vin" />
+        </label>
+        <label>
+          Owner ID
+          <select name="owner_id">
+          <option value="1">Bob</option>
+          <option value="2">Jeff</option>
+          <option value="3">Dylan</option>
+          <option value="4">Alex</option>
+          <option value="5">Clark</option>
+          </select>
         </label>
         <button>Submit</button>
       </form>
@@ -70,8 +84,8 @@ app.post('/car', async (req, res) => {
 
   // TODO-Task-7.2: Write an INSERT statement to save the data into the database
   await db.query(
-    "INSERT INTO cars(year, make, model) VALUES($1, $2, $3)",
-    [formData.year, formData.make, formData.model]
+    "INSERT INTO cars(year, make, model, vin, owner_id) VALUES($1, $2, $3, $4, $5)",
+    [formData.year, formData.make, formData.model, formData.vin, formData.owner_id]
   )
   // Redirect the browser back to the `/cars-html` page, which is what you want to do
   // when responding to a browser HTML form submission.
