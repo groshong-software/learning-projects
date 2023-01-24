@@ -8,7 +8,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }))
 
 app.get("/", async (req, res) => {
-  const result = await db.query("select * from cars;");
+  const result = await db.query("select * from cars Left Join owners on cars.owner_id = owners.id;");
   res.send(`
   <!DOCTYPE html>
   <html>
@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
     <body>
       <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
         <h1>Cars</h1>
-        <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model}</li>`)).join('')}</ol>
+        <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model} ${r.name}</li>`)).join('')}</ol>
         <h3>Add a new Car</h3>
         <form method="POST" action="/car">
           <label>
@@ -35,7 +35,11 @@ app.get("/", async (req, res) => {
             Model
             <input type="text" name="model" />
           </label>
-          <button>Submit</button>
+          <label>
+          Owner
+            <input type="text" name="owner"/>
+          </label>
+          <button>Submit</button>        
         </form>
       </main>
     </body>
@@ -63,11 +67,11 @@ app.post('/car', async (req, res) => {
   console.log('Form Data:', formData) // this is for our own debugging...
 
   // TODO-Task-7.2: Write an INSERT statement to save the data into the database
-  await db.query("INSERT INTO cars(year, make, model) VALUES($1, $2, $3)", [car.year, car.make, car.model])
+  await db.query("INSERT INTO cars(year, make, model, owner_id) VALUES($1, $2, $3, $4)", [formData.year, formData.make, formData.model, formData.owner])
   // Redirect the browser back to the `/cars-html` page, which is what you want to do
   // when responding to a browser HTML form submission.
   // NOTE: See docs here: https://expressjs.com/en/4x/api.html#res.redirect
-  res.redirect('/cars-html')
+  res.redirect('/')
 
   // NOTE: If we were handling a programmatic API submission (like from a
   // JavaScript or mobile app), we could have instead returned an HTTP 201 status
