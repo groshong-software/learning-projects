@@ -50,7 +50,7 @@ app.get("/", async (req, res) => {
           Owner ID
           <select name="owner_id">
           ${ownerResult.rows
-      .map((r) => `<option value="${r.id}">${r.name}</option>`)}
+      .map((r) => `<option value="${r.id}">${r.name} ${r.last_name}</option>`)}
           </select>
         </label>
         <button>Submit</button>
