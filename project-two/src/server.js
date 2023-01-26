@@ -20,7 +20,7 @@ app.get("/", async (req, res) => {
     <body>
       <main style="max-width: 800px; margin-left: auto; margin-right: auto;">
         <h1>Cars</h1>
-        <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model} ${r.name}</li>`)).join('')}</ol>
+        <ol>${result.rows.map(r => (`<li>${r.year} ${r.make} ${r.model} ${r.name} ${r.last_name} ${r.vin}</li>`)).join('')}</ol>
         <h3>Add a new Car</h3>
         <form method="POST" action="/car">
           <label>
@@ -38,6 +38,14 @@ app.get("/", async (req, res) => {
           <label>
           Owner
             <input type="text" name="owner"/>
+          </label>
+          <label>
+          Last Name
+            <input type="text" name="lastname"/>
+          </label>
+          <label>
+          VIN
+            <input type-"text" name="vin"/>
           </label>
           <button>Submit</button>        
         </form>
@@ -67,7 +75,7 @@ app.post('/car', async (req, res) => {
   console.log('Form Data:', formData) // this is for our own debugging...
 
   // TODO-Task-7.2: Write an INSERT statement to save the data into the database
-  await db.query("INSERT INTO cars(year, make, model, owner_id) VALUES($1, $2, $3, $4)", [formData.year, formData.make, formData.model, formData.owner])
+  await db.query("INSERT INTO cars(year, make, model, owner_id, vin) VALUES($1, $2, $3, $4, $5)", [formData.year, formData.make, formData.model, formData.owner, formData.vin])
   // Redirect the browser back to the `/cars-html` page, which is what you want to do
   // when responding to a browser HTML form submission.
   // NOTE: See docs here: https://expressjs.com/en/4x/api.html#res.redirect
