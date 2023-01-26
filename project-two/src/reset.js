@@ -37,12 +37,16 @@ await db.query(`
   ALTER TABLE cars
   ADD CONSTRAINT fk_cars_owners FOREIGN KEY (owner_id) REFERENCES owners (id);
 `);
+await db.query(`
+    ALTER TABLE owners
+    ADD COLUMN last_name varchar(17) DEFAULT NULL;
+`);
 const owners = [
-  { id: 1, name: "Bob" },
-  { id: 2, name: "Jim" },
-  { id: 3, name: "Jib" },
+  { id: 1, name: "Bob", last_name: "Saget" },
+  { id: 2, name: "Jim", last_name: "Halpert" },
+  { id: 3, name: "Jib", last_name: "redNeckPressure" },
+  { id: 4, name: "Dylan", last_name: "Perkins" },
 ];
-
 const cars = [
   {
     year: 2022,
@@ -65,11 +69,18 @@ const cars = [
     vin: "5UXWX5C56CL708569",
     ownerId: 2,
   },
+  {
+    year: 2016,
+    make: "Mazda",
+    model: "6",
+    vin: "5GYSUAH67HDYG63I8",
+    ownerId: 4,
+  }
 ];
 
 
 for (const owner of owners) {
-  await db.query("INSERT INTO owners(id, name) VALUES ($1, $2)", [owner.id, owner.name]);
+  await db.query("INSERT INTO owners(id, name, last_name) VALUES ($1, $2, $3)", [owner.id, owner.name, owner.last_name]);
 };
 // Insert cars into cars table
 for (const car of cars) {
