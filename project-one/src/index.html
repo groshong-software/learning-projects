@@ -9,7 +9,7 @@
 </head>
 
 <body class="w-full p-3">
-  <header class="flex flex-col">
+  <header class="flex flex-col md:justify-between md:flex-row">
     <h1 class="text-3xl">TommyGroshong.com</h1>
     <ul class="flex">
       <li class="mr-2"><a href="#"></a>About</a></li>
@@ -19,9 +19,9 @@
     </ul>
   </header>
   <hr class="w-full mx-2">
-  <main class="w-full">
+  <main class="w-full ">
     <h2 class="mt-5 text-2xl font-bold">Leading Effective React Teams</h2>
-    <div class="flex mt-3 flex-col">
+    <div class="flex mt-3 flex-col md:flex-row">
       <p>July 27, 2022</p>
       <div class="flex ml-3">
         <svg class="svg-inline--fa fa-folder fa-w-16 w-3" aria-hidden="true" data-prefix="fas" data-icon="folder"
@@ -73,7 +73,7 @@
     <a href="#" class="text-blue-600">Read More...</a>
     <hr class="w-full mt-10">
     <h2 class="mt-10 text-2xl font-bold">Good Software from the Software Engineer's Perspective</h2>
-    <div class="flex mt-3 flex-col">
+    <div class="flex mt-3 flex-col md:flex-row">
       <p>July 26, 2022</p>
       <div class="flex ml-3">
         <svg class="svg-inline--fa fa-folder fa-w-16 w-3" aria-hidden="true" data-prefix="fas" data-icon="folder"
@@ -136,21 +136,21 @@
 
     </div>
   </main>
-  <footer class="w-full">
-    <div class="flex mt-10 text-xs justify-between">
-      <div class="flex">
-        <p>© Copyright 2019 Thomas Groshong Jr</p>
-        <a href="#" class="text-blue-600 flex">
-          <svg class="svg-inline--fa fa-rss fa-w-14 w-3 ml-3" aria-hidden="true" data-prefix="fas" data-icon="rss"
-            role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-            <path fill="currentColor"
-              d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z">
-            </path>
-          </svg>
-          <p class="ml-2">About</p>
-        </a>
-      </div>
-      <p>Powered by <a href="#" class="text-blue-600">Hugo </a>and <a href="#" class="text-blue-600">Whiplash</a></p>
+  <footer class="w-full flex justify-between items-center mt-10 text-xs">
+    <div class="flex text-xs flex-col md:flex-row">
+      <p>© Copyright 2019</p>
+      <p>Thomas Groshong Jr</p>
+      <a href="#" class="text-blue-600 flex">
+        <svg class="svg-inline--fa fa-rss fa-w-14 w-3 md:ml-2" aria-hidden="true" data-prefix="fas" data-icon="rss"
+          role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+          <path fill="currentColor"
+            d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z">
+          </path>
+        </svg>
+        <p class="ml-2">About</p>
+      </a>
+    </div>
+    <p>Powered by <a href="#" class="text-blue-600">Hugo </a>and <a href="#" class="text-blue-600">Whiplash</a></p>
     </div>
   </footer>
 </body>
